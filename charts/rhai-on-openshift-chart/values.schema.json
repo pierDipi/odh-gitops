@@ -1025,6 +1025,11 @@
               "default": false,
               "description": "Enable Authorino TLS configuration"
             },
+            "authorinoServiceCaTrust": {
+              "type": "boolean",
+              "default": false,
+              "description": "Trust the OpenShift Service CA in Authorino while retaining platform CA trust"
+            },
             "spec": {
               "type": "object",
               "description": "Kuadrant CR spec fields - user can add any fields",

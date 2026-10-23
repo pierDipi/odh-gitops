@@ -831,6 +831,10 @@ kubectl annotate svc/authorino-authorino-authorization \
 
 Once the secret is created, set `dependencies.rhcl.config.tlsEnabled` to `true` in the ArgoCD application values.
 
+### Trust the OpenShift Service CA in Authorino
+
+Set `dependencies.rhcl.config.authorinoServiceCaTrust` to `true` when Authorino needs to call in-cluster HTTPS services signed by the OpenShift Service CA, such as the MaaS subscription selector. The chart emits a partial Deployment patch intended for Argo CD server-side apply; it adds the Service Account CA directory to `SSL_CERT_DIR` without replacing the platform CA bundle.
+
 ## Troubleshooting
 
 ### CRs not being created
