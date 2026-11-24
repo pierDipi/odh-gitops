@@ -1579,12 +1579,6 @@ rules:
   - apiGroups:
       - ""
     resources:
-      - pods/exec
-    verbs:
-      - create
-  - apiGroups:
-      - ""
-    resources:
       - pods/log
     verbs:
       - get
@@ -1639,6 +1633,30 @@ rules:
       - patch
       - update
       - watch
+  - apiGroups:
+      - apiextensions.k8s.io
+    resourceNames:
+      - datascienceclusters.datasciencecluster.opendatahub.io
+    resources:
+      - customresourcedefinitions/status
+    verbs:
+      - patch
+  - apiGroups:
+      - apiextensions.k8s.io
+    resourceNames:
+      - dscinitializations.dscinitialization.opendatahub.io
+    resources:
+      - customresourcedefinitions/status
+    verbs:
+      - patch
+  - apiGroups:
+      - apiextensions.k8s.io
+    resourceNames:
+      - platforms.config.opendatahub.io
+    resources:
+      - customresourcedefinitions/status
+    verbs:
+      - patch
   - apiGroups:
       - apiregistration.k8s.io
     resources:
@@ -2138,6 +2156,15 @@ rules:
       - list
       - watch
   - apiGroups:
+      - migration.k8s.io
+      - storagemigration.k8s.io
+    resources:
+      - storageversionmigrations
+    verbs:
+      - create
+      - delete
+      - get
+  - apiGroups:
       - monitoring.coreos.com
     resources:
       - alertmanagerconfigs
@@ -2414,11 +2441,30 @@ rules:
       - rbac.authorization.k8s.io
     resources:
       - clusterrolebindings
-      - clusterroles
       - rolebindings
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - rbac.authorization.k8s.io
+    resources:
+      - clusterroles
       - roles
     verbs:
-      - '*'
+      - bind
+      - create
+      - delete
+      - escalate
+      - get
+      - list
+      - patch
+      - update
+      - watch
   - apiGroups:
       - route.openshift.io
     resources:
